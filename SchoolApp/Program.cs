@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using SchoolApp.Data;
+using SchoolApp.Repositories;
 
 namespace SchoolApp
 {
@@ -14,6 +15,8 @@ namespace SchoolApp
             // Scoped - per request
             builder.Services.AddDbContext<SchoolMvc9Context>(options =>
                 options.UseSqlServer(connString));
+
+            builder.Services.AddRepositories();
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
