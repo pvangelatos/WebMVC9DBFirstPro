@@ -28,26 +28,22 @@ namespace SchoolApp.Repositories
 
         }
 
-        public Task<bool> DeleteAsync(int id)
+        public virtual async Task<bool> DeleteAsync(int id)
         {
-            
-            throw new NotImplementedException();
+
+            T? existingEntity = await _dbSet.FindAsync(id);
+            if (existingEntity is null) return false;
+            _dbSet.Remove(existingEntity);
+            return true;
+
         }
 
-        public Task<IEnumerable<T>> GetAllAsync()
-        {
-            throw new NotImplementedException();
-        }
+        public virtual async Task<T?> GetByIdAsync(int id) => await _dbSet.FindAsync(id);
 
-        public Task<T> GetByIdAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public virtual async Task<IEnumerable<T>> GetAllAsync() => await _dbSet.ToListAsync();
 
-        public Task<int> GetCountAsync()
-        {
-            throw new NotImplementedException();
-        }
+        public virtual async Task<int> GetCountAsync() => await _dbSet.CountAsync();
+        
 
         
     }
