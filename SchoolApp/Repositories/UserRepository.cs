@@ -11,7 +11,7 @@ namespace SchoolApp.Repositories
         public UserRepository(SchoolMvc9Context context) : base(context)
         {
         }
-        public async Task<User?> GetByUsernameAsync(string username) => 
+        public async Task<User?> GetUserByUsernameAsync(string username) => 
             await _context.Users.FirstOrDefaultAsync(u => u.Username == username);
 
         public async Task<PaginatedResult<User>> GetUsersAsync(int pageNumber, int pageSize, 
